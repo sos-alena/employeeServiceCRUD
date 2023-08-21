@@ -51,6 +51,27 @@ public class Domain {
 Department p = departmentService.getById(1L);
         System.out.println(p);
 
+        List<Address> addressList = addressService.getAll();
+        System.out.println(addressList);
+
+        List<Employee> employeeList = employeeService.getAll();
+        System.out.println(employeeList);
+
+        List<Department> departmentList = departmentService.getAll();
+        System.out.println(departmentList);
+
+        addressService.remove(address);
+
+        employeeService.remove(employee);
+
+        departmentService.remove(department);
+
+        addressService.update(address);
+
+        employeeService.update(employee);
+
+        departmentService.update(department);
+
         HibernateUtil.shutdown();
 
     }
