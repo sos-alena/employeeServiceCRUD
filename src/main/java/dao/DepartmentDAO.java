@@ -1,6 +1,5 @@
 package dao;
 
-import entity.Address;
 import entity.Department;
 
 import java.sql.SQLException;
