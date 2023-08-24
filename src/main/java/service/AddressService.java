@@ -10,8 +10,6 @@ import org.hibernate.Session;
 import java.sql.SQLException;
 import java.util.List;
 
-import static service.ListEntity.inputAction;
-
 public class AddressService extends SessionUtil implements AddressDAO {
 
     @Override

@@ -28,12 +28,12 @@ public class Department{
         public boolean equals(Object object) {
                 if (this == object) return true;
                 if (!(object instanceof Department that)) return false;
-                return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(employees, that.employees);
+                return Objects.equals(id, that.id) && Objects.equals(title, that.title);
         }
 
         @Override
         public int hashCode() {
-                return Objects.hash(id, title, employees);
+                return Objects.hash(id, title);
         }
 
         @Override

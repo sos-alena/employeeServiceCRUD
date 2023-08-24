@@ -8,92 +8,104 @@ import service.AddressService;
 import service.DepartmentService;
 import service.EmployeeService;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Domain {
-
-    public static void main(String[] args) throws SQLException {
+static final BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws SQLException, IOException {
 
 
         AddressService addressService = new AddressService();
         EmployeeService employeeService = new EmployeeService();
         DepartmentService departmentService = new DepartmentService();
+Address address = addressService.getById(1L);
+Department department = departmentService.getById(1L);
 
 
-        Address address = new Address();
-        address.setCountry("DC");
-        address.setTown("Gotham city");
-        address.setStreet("Arkham street 1");
-        address.setPostCode("12345");
-
-        Department department = new Department();
-        department.setTitle("Gotham PD");
 
         Employee employee = getEmployee(address, department);
-
-        List<Employee> employees = new ArrayList<>();
-        employees.add(employee);
-        department.setEmployees(employees);
-
-        addressService.add(address);
         employeeService.add(employee);
-        departmentService.add(department);
 
-        Address a = addressService.getById(1L);
-        System.out.println(a);
 
- Employee e = employeeService.getById(1L);
-        System.out.println(e);
+      /*  Address address = new Address();
+        System.out.println("Enter country");
+        String country = READER.readLine();
+        address.setCountry(country);
+        System.out.println("Enter town");
+        String town = READER.readLine();
+        address.setTown(town);
+        System.out.println("street");
+        String street = READER.readLine();
+        address.setStreet(street);
+        System.out.println("postCode");*/
+       // String postCode = READER.readLine();
+      //  address.setPostCode(postCode);
 
-Department p = departmentService.getById(1L);
-        System.out.println(p);
+       // addressService.add(address);
 
-        List<Address> addressList = addressService.getAll();
-        System.out.println(addressList);
+       /* Department department = new Department();
+        System.out.println("Title of department");
+        String name = READER.readLine();
+        department.setTitle(name);
 
-        List<Employee> employeeList = employeeService.getAll();
-        System.out.println(employeeList);
+        departmentService.add(department);*/
 
-        List<Department> departmentList = departmentService.getAll();
-        System.out.println(departmentList);
 
-        addressService.remove(address);
 
-        employeeService.remove(employee);
 
-        departmentService.remove(department);
 
-        addressService.update(address);
-
-        employeeService.update(employee);
-
-        departmentService.update(department);
+        System.out.println(department);
 
         HibernateUtil.shutdown();
 
     }
 
-    private static Employee getEmployee(Address address, Department department) {
+    private static Employee getEmployee(Address address, Department department) throws IOException {
         Employee employee = new Employee();
-        employee.setFirstName("James");
-        employee.setLastName("Gordon");
+        System.out.println("Enter FirstName");
+        String firstName = READER.readLine();
+        employee.setFirstName(firstName);
+        System.out.println("Enter LastName");
+        String lastName = READER.readLine();
+        employee.setLastName(lastName);
+        System.out.println("Enter year");
+        int year = Integer.parseInt(READER.readLine());
+        System.out.println("Enter mounth");
+        int mounth = Integer.parseInt(READER.readLine());
+        System.out.println("Enter day");
+        int day = Integer.parseInt(READER.readLine());
 
-        LocalDate birthday = LocalDate.of(1976, 12, 18);
+
+        LocalDate birthday = LocalDate.of(year, mounth, day);
 
         employee.setBirthday(birthday);
-        employee.setPhone_number("+380961055964");
+
+        System.out.println("Enter phone number");
+        String phone_number = READER.readLine();
+        employee.setPhone_number(phone_number);
         employee.setAddress(address);
 
-        LocalDate employee_date = LocalDate.of(2011, 1, 25);
+        System.out.println("Enter year emploiment_date");
+        int year2 = Integer.parseInt(READER.readLine());
+        System.out.println("Enter mounth emploiment_date");
+        int mounth2 = Integer.parseInt(READER.readLine());
+        System.out.println("Enter day emploiment_date");
+        int day2 = Integer.parseInt(READER.readLine());
+        LocalDate employee_date = LocalDate.of(year2, mounth2, day2);
         employee.setEmployment_data(employee_date);
 
         employee.setData_of_dismissal(null);
-
-        employee.setPosition("Accounter");
+        System.out.println("Enter position");
+        String position = READER.readLine();
+        employee.setPosition(position);
         employee.setDepartment(department);
+
         return employee;
     }
 }

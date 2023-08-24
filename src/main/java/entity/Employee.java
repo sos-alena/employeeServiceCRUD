@@ -45,9 +45,10 @@ public class Employee{
     @Column(name = "DATA_OF_DISMISSAL")
     private LocalDate data_of_dismissal;
 
-@ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne(cascade = CascadeType.DETACH)
 @JoinColumn(name = "department_id")
     private Department department;
+
 
     @Override
     public boolean equals(Object object) {
@@ -59,6 +60,10 @@ public class Employee{
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, birthday, phone_number, address, position, employment_data, data_of_dismissal, department);
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
