@@ -16,7 +16,7 @@ import static listEntity.AddressItem.*;
 @Slf4j
 public class InputValue {
     static final BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
-    static Pattern patternPostCode = Pattern.compile("^\\d{1,6}$");
+    static Pattern patternPostCode = Pattern.compile("^\\d{5,6}");
     static Pattern patternYesOrNot = Pattern.compile("[YN]");
     public static String inputYesOrNot() {
         String str;
@@ -109,6 +109,8 @@ public class InputValue {
                 System.out.println("PostCode is valid");
                 return PostCode;
             }
+            System.out.println("PostCode is invalid. " +
+                    "Check the PostCode.\nTry again");
                 log.info("PostCode is invalid. " +
                         "Check the PostCode.\nTry again");
                 return inputPostCodeValue();
