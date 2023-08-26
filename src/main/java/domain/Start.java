@@ -7,8 +7,13 @@ import entityController.AddressController;
 import service.AddressService;
 import service.DepartmentService;
 import service.EmployeeService;
+import validator.validationCountry;
 
 import java.sql.SQLException;
+import java.util.Locale;
+
+import static validator.InputValue.inputPostCodeValue;
+import static validator.InputValue.inputValidateStr;
 
 public class Start {
 
@@ -20,13 +25,18 @@ public class Start {
         Department department = departmentService.getById(1L);
         department.setTitle("Economic");
         departmentService.update(department);
-*/
+
 
         AddressController addressController = new AddressController();
         Address address = addressController.inputAddress();
-        System.out.println(address);
+        System.out.println(address);*/
+ AddressController addressController = new AddressController();
 
+        addressController.editeAddress();
 
         HibernateUtil.shutdown();
+
+
+
     }
 }
