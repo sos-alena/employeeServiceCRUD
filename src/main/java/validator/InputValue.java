@@ -51,6 +51,7 @@ public class InputValue {
 
 
         public static String inputValidateStr () {
+            System.out.println("Input value: ");
             try {
                 String str = READER.readLine().trim();
                 while (str.isEmpty()) {
@@ -102,6 +103,7 @@ public class InputValue {
         }
 
     public static String inputPostCodeValue() {
+        System.out.println("Enter POST_CODE: ");
         String PostCode;
         try {
             PostCode = inputValidateStr ();
