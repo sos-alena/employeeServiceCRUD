@@ -104,9 +104,8 @@ public class AddressController {
         }
     }
 
-    private static Boolean searchId(Long id) throws SQLException {
-        AddressService addressService = new AddressService();
-        List<Address> addresses = addressService.getAll();
+    private Boolean searchId(Long id) throws SQLException {
+       List<Address> addresses = addressService.getAll();
         for (Address item:addresses){
             Long ida = item.getId();
             if(ida.equals(id)){

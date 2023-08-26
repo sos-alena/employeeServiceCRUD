@@ -4,6 +4,7 @@ import bl.HibernateUtil;
 import entity.Address;
 import entity.Department;
 import entityController.AddressController;
+import entityController.DepartmentController;
 import service.AddressService;
 import service.DepartmentService;
 import service.EmployeeService;
@@ -30,9 +31,9 @@ public class Start {
         AddressController addressController = new AddressController();
         Address address = addressController.inputAddress();
         System.out.println(address);*/
- AddressController addressController = new AddressController();
+        DepartmentController departmentController = new DepartmentController();
 
-        addressController.editeAddress();
+        departmentController.deleteDepartment();
 
         HibernateUtil.shutdown();
 
