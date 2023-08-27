@@ -237,5 +237,8 @@ public class EmployeeController {
             return birthday;
         }
     }
+    public void selectAllEmployee() throws SQLException {
+        System.out.println(employeeService.getAll());
+    }
 }
 

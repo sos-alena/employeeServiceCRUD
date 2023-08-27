@@ -137,5 +137,8 @@ public class AddressController {
         }
         return null;
     }
+    public void selectAllAddress() throws SQLException {
+        System.out.println(addressService.getAll());
+    }
 }
 

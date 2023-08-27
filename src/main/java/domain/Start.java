@@ -7,6 +7,7 @@ import entity.Employee;
 import entityController.AddressController;
 import entityController.DepartmentController;
 import entityController.EmployeeController;
+import entityController.EntityController;
 import service.AddressService;
 import service.DepartmentService;
 import service.EmployeeService;
@@ -25,10 +26,9 @@ public class Start {
 
     public static void main(String[] args) throws SQLException {
 
-     EmployeeController employeeController = new EmployeeController();
+        EntityController entityController = new EntityController();
 
-     String str = inputValidateStr ();
-    employeeController.searchINN(str);
+        entityController.selectEntity();
         shutdown();
 
     }

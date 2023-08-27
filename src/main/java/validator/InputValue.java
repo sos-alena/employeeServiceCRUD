@@ -3,6 +3,7 @@ package validator;
 import listEntity.Action;
 import listEntity.AddressItem;
 import listEntity.EmployeeItem;
+import listEntity.ListEntity;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
 import static listEntity.Action.*;
 import static listEntity.AddressItem.*;
 import static listEntity.EmployeeItem.*;
+import static listEntity.ListEntity.*;
 
 @Slf4j
 public class InputValue {
@@ -91,6 +93,21 @@ public class InputValue {
             }
         }
 
+    public static ListEntity inputEntity() {
+        try {
+            System.out.println("Input the item from the list: "
+                    + ADDRESS + ", "
+                    + EMPLOYEE + ", "
+                    + DEPARTMENT );
+            ListEntity item = ListEntity.valueOf(READER.readLine());
+            System.out.println("Item is valid");
+            return item;
+        } catch (Exception exception) {
+            log.info("Incorrect value type. ");
+            System.out.println("Enter value again: ");
+            return inputEntity();
+        }
+    }
 
         public static Action inputAction () {
             try {

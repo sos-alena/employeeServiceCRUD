@@ -119,5 +119,9 @@ public class DepartmentController {
         return null;
     }
 
+    public void selectAllDepartment() throws SQLException {
+        System.out.println(departmentService.getAll());
+    }
+
 }
 
