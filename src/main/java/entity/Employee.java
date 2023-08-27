@@ -45,6 +45,9 @@ public class Employee{
     @Column(name = "DATA_OF_DISMISSAL")
     private LocalDate data_of_dismissal;
 
+    @Column(name = "INN")
+    private String inn;
+
 @ManyToOne(cascade = CascadeType.DETACH)
 @JoinColumn(name = "department_id")
     private Department department;

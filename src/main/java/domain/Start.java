@@ -3,41 +3,32 @@ package domain;
 import bl.HibernateUtil;
 import entity.Address;
 import entity.Department;
+import entity.Employee;
 import entityController.AddressController;
 import entityController.DepartmentController;
+import entityController.EmployeeController;
 import service.AddressService;
 import service.DepartmentService;
 import service.EmployeeService;
 import validator.validationCountry;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Locale;
 
-import static validator.InputValue.inputPostCodeValue;
-import static validator.InputValue.inputValidateStr;
+import static bl.HibernateUtil.shutdown;
+import static validator.InputValue.*;
 
 public class Start {
 
     public static void main(String[] args) throws SQLException {
-        /*AddressService addressService = new AddressService();
-        EmployeeService employeeService = new EmployeeService();
-        DepartmentService departmentService = new DepartmentService();
-
-        Department department = departmentService.getById(1L);
-        department.setTitle("Economic");
-        departmentService.update(department);
+        EmployeeController employeeController = new EmployeeController();
+        String str = "654825876512";
+        Employee employee = employeeController.searchInn(str);
+        System.out.println(employee);
 
 
-        AddressController addressController = new AddressController();
-        Address address = addressController.inputAddress();
-        System.out.println(address);*/
-        DepartmentController departmentController = new DepartmentController();
-
-        departmentController.deleteDepartment();
-
-        HibernateUtil.shutdown();
-
-
+        shutdown();
 
     }
 }

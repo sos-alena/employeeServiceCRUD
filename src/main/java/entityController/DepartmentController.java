@@ -91,7 +91,7 @@ public class DepartmentController {
         return false;
     }
 
-    private Boolean searchTitle(String title) throws SQLException {
+    public Boolean searchTitle(String title) throws SQLException {
         List<Department> departments = departmentService.getAll();
         for (Department item:departments){
             String string = item.getTitle();
