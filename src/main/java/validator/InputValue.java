@@ -76,7 +76,7 @@ public class InputValue {
 
 
         public static String inputValidateStr () {
-            System.out.println("Input value: ");
+
             try {
                 String str = READER.readLine().trim();
                 while (str.isEmpty()) {

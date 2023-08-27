@@ -7,7 +7,6 @@ import static validator.InputValue.inputValidateStr;
 public class validationCountry {
 
     public static String getNameCountry() {
-        System.out.println("Input COUNTRY: ");
         String name = inputValidateStr();
 
         String[] locales = Locale.getISOCountries();

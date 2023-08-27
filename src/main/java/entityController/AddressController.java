@@ -41,31 +41,41 @@ public class AddressController {
     public void deleteAddress() throws SQLException {
         System.out.println("Input number ID: ");
         Long id = inputValidateLong();
-        if (searchId(id)) {
-            Address address = addressService.getById(id);
-            addressService.remove(address);
-            System.out.println("Address successfully deleted!");
-        }
-        System.out.println("Address with this ID does not exist.");
+        Address address = searchId(id);
+        if (address == null) {
+            System.out.println("Address with this ID does not exist.");
+        } else {
+            System.out.println(address);
+            int counter = checkIdAddressInEmployee(id);
+          if (counter == 0) {
+                addressService.remove(address);
+                System.out.println("Address successfully delete!");
 
+            } else {
+            System.out.println("Unable to delete address with id because " +
+                    "it is associated with the table Employee) ");
+          }
+        }
     }
 
     public void editeAddress() throws SQLException {
         System.out.println("Input number ID: ");
         Long id = inputValidateLong();
-        if (searchId(id)) {
-            Address address = addressService.getById(id);
+       Address address = searchId(id);
+        if (address == null) {
+            System.out.println("Address with this ID does not exist.");
+
+        } else {
             System.out.println(address);
             cycleChoiceNameTable(address);
             addressService.update(address);
             System.out.println("Address successfully update!");
-        } else {
-            System.out.println("Address with this ID does not exist.");
+
         }
 
     }
 
-    private void selectNameTable(Address address) throws SQLException {
+    private void selectNameTable(Address address) {
         AddressItem name = inputAddressItem();
         switch (name) {
             case COUNTRY -> address.setCountry(getNameCountry());
@@ -75,7 +85,7 @@ public class AddressController {
         }
     }
 
-    private void cycleChoiceNameTable(Address address) throws SQLException {
+    private void cycleChoiceNameTable(Address address) {
         String n = "N";
         System.out.println("To continue working with the Address, enter Y or N");
         String str = inputYesOrNot();
@@ -87,35 +97,45 @@ public class AddressController {
         }
     }
 
-    private static void checkId(Long id) throws SQLException {
+    private int checkIdAddressInEmployee(Long id){
         EmployeeService employeeService = new EmployeeService();
-        List<Employee> employees = employeeService.getAll();
-        for (Employee item : employees) {
+        List<Employee> employees = null;
+        try {
+            employees = employeeService.getAll();
+        } catch (SQLException e) {
+            System.out.println("Error " + e);
+        }
+
+        int temp = 0;
+        for (Employee item: employees) {
             Address address = item.getAddress();
-            Long ida = address.getId();
-            if (Objects.equals(id, ida)) {
-                System.out.println("Yes! The current Id is an external key for the table Employee");
-                System.out.println(item);
+            if (!(address == null)) {
+                Long ida = address.getId();
+                if(id.equals(ida)) {
 
-
-            } else {
-                System.out.println("No such ID exists");
+                    temp++;
+                }
             }
         }
+         return temp;
     }
 
-    private Boolean searchId(Long id) throws SQLException {
-       List<Address> addresses = addressService.getAll();
-        for (Address item:addresses){
-            Long ida = item.getId();
-            if(ida.equals(id)){
-                System.out.println("Success! This id exists");
-                return true;
-            }
+    public Address searchId(Long id) {
+        List<Address> addresses;
+        try {
+            addresses = addressService.getAll();
+            for (Address item : addresses) {
+                Long ida = item.getId();
+                if (ida.equals(id)) {
+                    System.out.println("Success! This id exists");
+                    return item;
 
+                }
             }
-          return false;
+          } catch ( SQLException e) {
+            System.out.println("Error " + e );
         }
-
+        return null;
+    }
 }
 

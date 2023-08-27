@@ -14,6 +14,8 @@ import validator.validationCountry;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import static bl.HibernateUtil.shutdown;
@@ -22,12 +24,11 @@ import static validator.InputValue.*;
 public class Start {
 
     public static void main(String[] args) throws SQLException {
-        EmployeeController employeeController = new EmployeeController();
-        String str = "654825876512";
-        Employee employee = employeeController.searchInn(str);
-        System.out.println(employee);
 
+     EmployeeController employeeController = new EmployeeController();
 
+     String str = inputValidateStr ();
+    employeeController.searchINN(str);
         shutdown();
 
     }

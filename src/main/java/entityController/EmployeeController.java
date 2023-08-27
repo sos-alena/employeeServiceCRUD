@@ -79,19 +79,19 @@ public class EmployeeController {
     private Department addDepartmentToEmployee() throws SQLException {
         System.out.println("Input Title Department: ");
         String title = inputValidateStr();
-        Department department = searchTitle(title);
+        Department department = departmentController.searchTitle(title);
         if (department == null) {
-            Department department1 = departmentController.inputDepartment();
-            return department1;
+            Department departmentNew = departmentController.inputDepartment();
+            return departmentNew;
         } else {
             return (department);
         }
     }
 
     private Address addAddressToEmployee() throws SQLException {
-        System.out.println("Input id Adress: ");
+        System.out.println("Input id Address: ");
         Long id = inputValidateLong();
-        Address address = searchId(id);
+        Address address = addressController.searchId(id);
         if (address == null) {
             Address address1 = addressController.inputAddress();
             return address1;
@@ -104,22 +104,23 @@ public class EmployeeController {
     public void deleteEmployee() throws SQLException {
         System.out.println("Input number ID: ");
         String inn = inputINN();
-        Employee employee = searchInn(inn);
+        Employee employee = searchINN(inn);
         employeeService.remove(employee);
         System.out.println("Employee successfully deleted!");
 
     }
 
     public void editeEmployee() throws SQLException {
-        System.out.println("Input number ID: ");
+        //System.out.println("Input number ID: ");
         String inn = inputINN();
-        Employee employee = searchInn(inn);
-
-        System.out.println(employee);
-        cycleChoiceNameTable(employee);
-        employeeService.update(employee);
-        System.out.println("Employee successfully update!");
-
+        Employee employee = searchINN(inn);
+        if(employee != null){
+            System.out.println(employee);
+            cycleChoiceNameTable(employee);
+            employeeService.update(employee);
+            System.out.println("Employee successfully update!");System.out.println();
+        }
+        System.out.println("this employee does not exist");
     }
 
     private void selectNameTable(Employee employee) throws SQLException {
@@ -152,44 +153,21 @@ public class EmployeeController {
     }
 
 
-    public Employee searchInn(String inn) throws SQLException {
-        List<Employee> employees = employeeService.getAll();
-
-
-        for (Employee item : employees) {
-            String str = item.getInn();
-            System.out.println(str);
-          if (str.equals(inn)) {
-                System.out.println("Success! This id exists");
-                return item;
+    public Employee searchINN(String str) {
+        List<Employee> employees;
+        try {
+            employees = employeeService.getAll();
+            for (Employee item : employees) {
+                String inn = item.getInn();
+                if (!(inn == null) || inn  == str) {
+                    System.out.println("Success! This id exists");
+                    return item;
+                }
+                System.out.println("Тhis inn does not exist");
+                return null;
             }
-
-        }
-        return null;
-    }
-
-    public Department searchTitle(String title) throws SQLException {
-        List<Department> departments = departmentService.getAll();
-        for (Department item : departments) {
-            String string = item.getTitle();
-            if (string.equals(title)) {
-                System.out.println("Success! This department exists");
-                return item;
-            }
-
-        }
-        return null;
-    }
-
-    private Address searchId(Long id) throws SQLException {
-        List<Address> addresses = addressService.getAll();
-        for (Address item : addresses) {
-            Long ida = item.getId();
-            if (ida.equals(id)) {
-                System.out.println("Success! This id exists");
-                return item;
-            }
-
+        } catch ( SQLException e) {
+            System.out.println("Error " + e );
         }
         return null;
     }

@@ -33,23 +33,32 @@ public class DepartmentController {
     public void deleteDepartment() throws SQLException {
         System.out.println("Input number ID: ");
         Long id = inputValidateLong();
-        if (searchId(id)) {
-            Department department = departmentService.getById(id);
-            departmentService.remove(department);
-            System.out.println("Department successfully deleted!");
-        }
+        Department department = searchId(id);
+        if (department == null) {
+            System.out.println("Depatment with this ID does not exist.");
+        } else {
+            System.out.println(department);
+            int counter = checkIdDepartmentInEmployee(id);
+            if (counter == 0) {
+                departmentService.remove(department);
+                System.out.println("Department successfully delete!");
 
+            } else {
+                System.out.println("Unable to delete department with id because " +
+                        "it is associated with the table Employee) ");
+            }
+        }
     }
 
     public void editeDepartment() throws SQLException {
         System.out.println("Input number ID: ");
         Long id = inputValidateLong();
-        if (searchId(id)) {
+        if (!(searchId(id) == null)) {
             Department department = departmentService.getById(id);
             System.out.println(department);
             System.out.println("Enter department title for update: ");
             String title = inputValidateStr ();
-            if(!searchTitle(title)){
+            if(!(searchTitle(title) == null)){
                 department.setTitle(title);
                 departmentService.update(department);
                 System.out.println("Department successfully update!");
@@ -59,49 +68,55 @@ public class DepartmentController {
 
         }
     }
-    private static void checkId(Long id) throws SQLException {
+    private int checkIdDepartmentInEmployee(Long id){
         EmployeeService employeeService = new EmployeeService();
-        List<Employee> employees = employeeService.getAll();
-        for (Employee item : employees) {
+        List<Employee> employees = null;
+        try {
+            employees = employeeService.getAll();
+        } catch (SQLException e) {
+            System.out.println("Error " + e);
+        }
+
+        int temp = 0;
+
+        for (Employee item: employees) {
             Department department = item.getDepartment();
-            Long ida = department.getId();
-            if (Objects.equals(id, ida)) {
-                System.out.println("Yes! The current Id is an external key for the table Employee");
-                System.out.println(item);
+            if (!(department == null)) {
+                Long ida = department.getId();
+                if(id.equals(ida)) {
 
-
-            } else {
-                System.out.println("No such ID exists");
+                    temp++;
+                }
             }
         }
+        return temp;
     }
 
-    private Boolean searchId(Long id) throws SQLException {
+
+    private Department searchId(Long id) throws SQLException {
         List<Department> departments = departmentService.getAll();
         for (Department item:departments){
             Long ida = item.getId();
             if(ida.equals(id)){
                 System.out.println("Success! This id exists");
-                return true;
-            } else {
-                System.out.println("this ID does not exist in the database Department");
+                return item;
             }
 
         }
-        return false;
+        return null;
     }
 
-    public Boolean searchTitle(String title) throws SQLException {
+    public Department searchTitle(String title) throws SQLException {
         List<Department> departments = departmentService.getAll();
         for (Department item:departments){
             String string = item.getTitle();
             if(string.equals(title)){
                 System.out.println("Success! This id exists");
-                return true;
+                return item;
             }
 
         }
-        return false;
+        return null;
     }
 
 }
