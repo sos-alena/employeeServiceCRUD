@@ -92,7 +92,6 @@ public class DepartmentController {
         return temp;
     }
 
-
     private Department searchId(Long id) throws SQLException {
         List<Department> departments = departmentService.getAll();
         for (Department item:departments){

@@ -28,8 +28,7 @@ public class Start {
 
         EntityController entityController = new EntityController();
 
-        entityController.selectEntity();
-        shutdown();
+        entityController.app();
 
     }
 }

@@ -7,6 +7,7 @@ import listEntity.ListEntity;
 
 import java.sql.SQLException;
 
+import static bl.HibernateUtil.shutdown;
 import static listEntity.Action.*;
 import static validator.InputValue.*;
 import static validator.InputValue.inputYesOrNot;
@@ -18,7 +19,21 @@ public class EntityController {
     EmployeeController employeeController = new EmployeeController();
 
 
-    public void selectEntity() throws SQLException {
+     public void app() throws SQLException {
+         String n = "N";
+         System.out.println("To continue working with the APP, enter Y or N");
+         String str = inputYesOrNot();
+         if (!n.equals(str)) {
+             selectEntity();
+             app();
+         } else {
+             System.out.println("Element unchanged!");
+         }
+         shutdown();
+     }
+
+
+   private void selectEntity() throws SQLException {
         ListEntity name = inputEntity();
         switch (name) {
             case ADDRESS -> cycleChoiceActionAddress();

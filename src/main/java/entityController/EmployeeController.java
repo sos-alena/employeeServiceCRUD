@@ -3,13 +3,8 @@ package entityController;
 import entity.Address;
 import entity.Department;
 import entity.Employee;
-import listEntity.AddressItem;
 import listEntity.EmployeeItem;
-import service.AddressService;
-import service.DepartmentService;
 import service.EmployeeService;
-
-import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,30 +12,22 @@ import java.util.Objects;
 
 import static validator.InputValue.*;
 import static validator.InputValue.inputYesOrNot;
-import static validator.validationCountry.getNameCountry;
 
 public class EmployeeController {
 
     EmployeeService employeeService = new EmployeeService();
-    DepartmentService departmentService = new DepartmentService();
     DepartmentController departmentController = new DepartmentController();
     AddressController addressController = new AddressController();
-    AddressService addressService = new AddressService();
 
-    public Employee inputEmployee() throws SQLException {
+    public void inputEmployee() throws SQLException {
         Employee employee = new Employee();
         LocalDate birthday = validBirthday();
-
         employee.setBirthday(birthday);
         LocalDate employmentDate = validEmploymentDate(birthday.minusYears(16));
-
         employee.setEmployment_data(employmentDate);
-
         System.out.println("Enter dataOfDismissal");
         LocalDate dataOfDismissal = addDateOfDismissal(employmentDate);
-
         employee.setData_of_dismissal(dataOfDismissal);
-
         System.out.println("Enter FirstName");
         String firstName = inputValidateStr();
         employee.setFirstName(firstName);
@@ -63,15 +50,12 @@ public class EmployeeController {
 
         employeeService.add(employee);
 
-        return employee;
-
     }
 
     private LocalDate addDateOfDismissal(LocalDate date) {
 
         if (isDataOfDismmissal()) {
-            LocalDate localDate = validDataOfDismissal(date);
-            return localDate;
+            return validDataOfDismissal(date);
         }
         return null;
     }
@@ -81,12 +65,11 @@ public class EmployeeController {
         String title = inputValidateStr();
         Department department = departmentController.searchTitle(title);
         System.out.println(department);
-            if (department == null) {
-                Department departmentNew = departmentController.inputDepartment();
-                return departmentNew;
-            } else {
-                return (department);
-            }
+        if (department == null) {
+            return departmentController.inputDepartment();
+        } else {
+            return (department);
+        }
     }
 
     private Address addAddressToEmployee() throws SQLException {
@@ -94,8 +77,7 @@ public class EmployeeController {
         Long id = inputValidateLong();
         Address address = addressController.searchId(id);
         if (address == null) {
-            Address addressNew = addressController.inputAddress();
-            return addressNew;
+            return addressController.inputAddress();
         } else {
             return address;
         }
@@ -105,10 +87,10 @@ public class EmployeeController {
     public void deleteEmployee() throws SQLException {
         String inn = inputINN();
         Employee employee = searchINN(inn);
-        if(employee != null) {
+        if (employee != null) {
             employeeService.remove(employee);
             System.out.println("Employee successfully deleted!");
-        }else {
+        } else {
             System.out.println("Employee is not excite");
         }
 
@@ -117,7 +99,7 @@ public class EmployeeController {
     public void editeEmployee() throws SQLException {
         String inn = inputINN();
         Employee employee = searchINN(inn);
-        if(employee != null) {
+        if (employee != null) {
             cycleChoiceNameTable(employee);
             employeeService.update(employee);
             System.out.println("Employee successfully update!");
@@ -131,7 +113,8 @@ public class EmployeeController {
         EmployeeItem name = inputEmployeeItem();
         switch (name) {
             case BIRTHDAY -> employee.setBirthday(validBirthday());
-            case DATA_OF_DISMISSAL -> employee.setData_of_dismissal(validDataOfDismissal(employee.getEmployment_data()));
+            case DATA_OF_DISMISSAL ->
+                    employee.setData_of_dismissal(validDataOfDismissal(employee.getEmployment_data()));
             case EMPLOYMENT_DATA -> employee.setEmployment_data(validEmploymentDate(employee.getBirthday()));
             case FIRST_NAME -> employee.setFirstName(inputValidateStr());
             case LAST_NAME -> employee.setLastName(inputValidateStr());
@@ -163,7 +146,7 @@ public class EmployeeController {
         for (Employee employee : employees) {
             String inn = employee.getInn();
 
-            if (checkInnFinel(inn, str)) {
+            if (checkInnFinal(inn, str)) {
                 System.out.println(employee);
                 return employee;
             }
@@ -172,25 +155,18 @@ public class EmployeeController {
         return null;
     }
 
-    private String checkEqualsINN(String inn, String str){
-        return (!Objects.equals(inn, str))?null:inn;
+    private String checkEqualsINN(String inn, String str) {
+        return (!Objects.equals(inn, str)) ? null : inn;
     }
 
-    private boolean checkInnFinel(String inn, String str){
-          if(checkEqualsINN(inn, str) != null){
-              return true;
-        }
-
-        return false;
+    private boolean checkInnFinal(String inn, String str) {
+        return checkEqualsINN(inn, str) != null;
     }
 
     private Boolean isDataOfDismmissal() {
         String switcher = "Y";
         System.out.println("Enter Y if the employee is fired or N if not fired");
-        if (inputYesOrNot().equals(switcher)) {
-            return true;
-        }
-        return false;
+        return inputYesOrNot().equals(switcher);
     }
 
     private LocalDate validEmploymentDate(LocalDate localDate) {
@@ -228,7 +204,7 @@ public class EmployeeController {
             System.out.println("If this is an input error, try entering data again");
             System.out.println("Enter Y or N");
             String yn = inputYesOrNot();
-            if(yn.equals("N")){
+            if (yn.equals("N")) {
                 System.exit(0);
                 return null;
             }
@@ -237,6 +213,7 @@ public class EmployeeController {
             return birthday;
         }
     }
+
     public void selectAllEmployee() throws SQLException {
         System.out.println(employeeService.getAll());
     }

@@ -8,9 +8,7 @@ import service.EmployeeService;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
 
-import static listEntity.AddressItem.*;
 import static validator.InputValue.*;
 import static validator.validationCountry.getNameCountry;
 
