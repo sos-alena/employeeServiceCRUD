@@ -62,11 +62,7 @@ public class Employee{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, birthday, phone_number, address, position, employment_data, data_of_dismissal, department);
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
+        return Objects.hash(id, firstName, lastName, birthday, phone_number, address, position, employment_data, data_of_dismissal, inn, department);
     }
 
     @Override
@@ -81,6 +77,7 @@ public class Employee{
                 ", position='" + position + '\'' +
                 ", employment_data=" + employment_data +
                 ", data_of_dismissal=" + data_of_dismissal +
+                ", inn='" + inn + '\'' +
                 ", department=" + department +
                 '}';
     }

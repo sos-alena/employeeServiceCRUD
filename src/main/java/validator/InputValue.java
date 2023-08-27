@@ -131,14 +131,14 @@ public class InputValue {
         try {
             System.out.println("Input the item from the list: "
                     + BIRTHDAY + ", "
-                    + BIRTHDAY + ", "
-                    + BIRTHDAY + ", " +
+                    + DATA_OF_DISMISSAL + ", "
+                    + EMPLOYMENT_DATA + ", " +
                     FIRST_NAME + ", "
             + LAST_NAME + ", "
             + INN + ", "
             + PHONE_NUMBER + ", "
             + PHONE_NUMBER + ", "
-            + DEPARTMENT_ID + ", "
+            + ADDRESS_ID + ", "
             + DEPARTMENT_ID);
             EmployeeItem item =EmployeeItem.valueOf(READER.readLine());
             System.out.println("Item is valid");
