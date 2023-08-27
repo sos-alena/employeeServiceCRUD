@@ -80,12 +80,13 @@ public class EmployeeController {
         System.out.println("Input Title Department: ");
         String title = inputValidateStr();
         Department department = departmentController.searchTitle(title);
-        if (department == null) {
-            Department departmentNew = departmentController.inputDepartment();
-            return departmentNew;
-        } else {
-            return (department);
-        }
+        System.out.println(department);
+            if (department == null) {
+                Department departmentNew = departmentController.inputDepartment();
+                return departmentNew;
+            } else {
+                return (department);
+            }
     }
 
     private Address addAddressToEmployee() throws SQLException {
@@ -93,8 +94,8 @@ public class EmployeeController {
         Long id = inputValidateLong();
         Address address = addressController.searchId(id);
         if (address == null) {
-            Address address1 = addressController.inputAddress();
-            return address1;
+            Address addressNew = addressController.inputAddress();
+            return addressNew;
         } else {
             return address;
         }
@@ -102,25 +103,28 @@ public class EmployeeController {
     }
 
     public void deleteEmployee() throws SQLException {
-        System.out.println("Input number ID: ");
         String inn = inputINN();
         Employee employee = searchINN(inn);
-        employeeService.remove(employee);
-        System.out.println("Employee successfully deleted!");
+        if(employee != null) {
+            employeeService.remove(employee);
+            System.out.println("Employee successfully deleted!");
+        }else {
+            System.out.println("Employee is not excite");
+        }
 
     }
 
     public void editeEmployee() throws SQLException {
-        //System.out.println("Input number ID: ");
         String inn = inputINN();
         Employee employee = searchINN(inn);
-        if(employee != null){
-            System.out.println(employee);
+        if(employee != null) {
             cycleChoiceNameTable(employee);
             employeeService.update(employee);
-            System.out.println("Employee successfully update!");System.out.println();
+            System.out.println("Employee successfully update!");
+            System.out.println();
+        } else {
+            System.out.println("NoT");
         }
-        System.out.println("this employee does not exist");
     }
 
     private void selectNameTable(Employee employee) throws SQLException {
@@ -153,23 +157,31 @@ public class EmployeeController {
     }
 
 
-    public Employee searchINN(String str) {
-        List<Employee> employees;
-        try {
-            employees = employeeService.getAll();
-            for (Employee item : employees) {
-                String inn = item.getInn();
-                if (!(inn == null) || inn  == str) {
-                    System.out.println("Success! This id exists");
-                    return item;
-                }
-                System.out.println("Тhis inn does not exist");
-                return null;
+    public Employee searchINN(String str) throws SQLException {
+        List<Employee> employees = employeeService.getAll();
+
+        for (Employee employee : employees) {
+            String inn = employee.getInn();
+
+            if (checkInnFinel(inn, str)) {
+                System.out.println(employee);
+                return employee;
             }
-        } catch ( SQLException e) {
-            System.out.println("Error " + e );
         }
+
         return null;
+    }
+
+    private String checkEqualsINN(String inn, String str){
+        return (!Objects.equals(inn, str))?null:inn;
+    }
+
+    private boolean checkInnFinel(String inn, String str){
+          if(checkEqualsINN(inn, str) != null){
+              return true;
+        }
+
+        return false;
     }
 
     private Boolean isDataOfDismmissal() {
