@@ -1,12 +1,11 @@
-package dao;
+package employeeServiceCRUD.repositories;
 
-import entity.Address;
-import entity.Employee;
+import employeeServiceCRUD.models.Employee;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface EmployeeDAO {
+public interface EmployeeRepository {
     void add(Employee employee) throws SQLException;
 
     List<Employee> getAll() throws SQLException;

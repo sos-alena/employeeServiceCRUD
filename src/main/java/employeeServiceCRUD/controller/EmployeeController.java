@@ -1,23 +1,27 @@
-package entityController;
+package employeeServiceCRUD.controller;
 
-import entity.Address;
-import entity.Department;
-import entity.Employee;
-import listEntity.EmployeeItem;
-import service.EmployeeService;
+import employeeServiceCRUD.controller.validator.InputValue;
+import employeeServiceCRUD.models.Address;
+import employeeServiceCRUD.models.Department;
+import employeeServiceCRUD.models.Employee;
+import employeeServiceCRUD.controller.enums.EmployeeColumns;
+import employeeServiceCRUD.service.EmployeeService;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-import static validator.InputValue.*;
-import static validator.InputValue.inputYesOrNot;
-
 public class EmployeeController {
 
-    EmployeeService employeeService = new EmployeeService();
-    DepartmentController departmentController = new DepartmentController();
-    AddressController addressController = new AddressController();
+    AddressController addressController;
+    EmployeeService employeeService;
+    DepartmentController departmentController;
+
+    public EmployeeController(AddressController addressController, EmployeeService employeeService, DepartmentController departmentController) {
+        this.addressController = addressController;
+        this.employeeService = employeeService;
+        this.departmentController = departmentController;
+    }
 
     public void inputEmployee() throws SQLException {
         Employee employee = new Employee();
@@ -29,19 +33,19 @@ public class EmployeeController {
         LocalDate dataOfDismissal = addDateOfDismissal(employmentDate);
         employee.setData_of_dismissal(dataOfDismissal);
         System.out.println("Enter FirstName");
-        String firstName = inputValidateStr();
+        String firstName = InputValue.inputValidateStr();
         employee.setFirstName(firstName);
         System.out.println("Enter LastName");
-        String lastName = inputValidateStr();
+        String lastName = InputValue.inputValidateStr();
         employee.setLastName(lastName);
         System.out.println("Enter INN");
-        String inn = inputINN();
+        String inn = InputValue.inputINN();
         employee.setInn(inn);
         System.out.println("Enter phone-Number");
-        String phoneNumber = inputPhoneNumber();
+        String phoneNumber = InputValue.inputPhoneNumber();
         employee.setPhone_number(phoneNumber);
         System.out.println("Enter Position");
-        String position = inputValidateStr();
+        String position = InputValue.inputValidateStr();
         employee.setPosition(position);
         Department department = addDepartmentToEmployee();
         employee.setDepartment(department);
@@ -62,7 +66,7 @@ public class EmployeeController {
 
     private Department addDepartmentToEmployee() throws SQLException {
         System.out.println("Input Title Department: ");
-        String title = inputValidateStr();
+        String title = InputValue.inputValidateStr();
         Department department = departmentController.searchTitle(title);
         System.out.println(department);
         if (department == null) {
@@ -74,7 +78,7 @@ public class EmployeeController {
 
     private Address addAddressToEmployee() throws SQLException {
         System.out.println("Input id Address: ");
-        Long id = inputValidateLong();
+        Long id = InputValue.inputValidateLong();
         Address address = addressController.searchId(id);
         if (address == null) {
             return addressController.inputAddress();
@@ -85,7 +89,7 @@ public class EmployeeController {
     }
 
     public void deleteEmployee() throws SQLException {
-        String inn = inputINN();
+        String inn = InputValue.inputINN();
         Employee employee = searchINN(inn);
         if (employee != null) {
             employeeService.remove(employee);
@@ -97,7 +101,7 @@ public class EmployeeController {
     }
 
     public void editeEmployee() throws SQLException {
-        String inn = inputINN();
+        String inn = InputValue.inputINN();
         Employee employee = searchINN(inn);
         if (employee != null) {
             cycleChoiceNameTable(employee);
@@ -110,17 +114,17 @@ public class EmployeeController {
     }
 
     private void selectNameTable(Employee employee) throws SQLException {
-        EmployeeItem name = inputEmployeeItem();
+        EmployeeColumns name = InputValue.inputEmployeeItem();
         switch (name) {
             case BIRTHDAY -> employee.setBirthday(validBirthday());
             case DATA_OF_DISMISSAL ->
                     employee.setData_of_dismissal(validDataOfDismissal(employee.getEmployment_data()));
             case EMPLOYMENT_DATA -> employee.setEmployment_data(validEmploymentDate(employee.getBirthday()));
-            case FIRST_NAME -> employee.setFirstName(inputValidateStr());
-            case LAST_NAME -> employee.setLastName(inputValidateStr());
-            case INN -> employee.setInn(inputINN());
-            case PHONE_NUMBER -> employee.setPhone_number(inputPhoneNumber());
-            case POSITION -> employee.setPosition(inputValidateStr());
+            case FIRST_NAME -> employee.setFirstName(InputValue.inputValidateStr());
+            case LAST_NAME -> employee.setLastName(InputValue.inputValidateStr());
+            case INN -> employee.setInn(InputValue.inputINN());
+            case PHONE_NUMBER -> employee.setPhone_number(InputValue.inputPhoneNumber());
+            case POSITION -> employee.setPosition(InputValue.inputValidateStr());
             case DEPARTMENT_ID -> employee.setDepartment(addDepartmentToEmployee());
             case ADDRESS_ID -> employee.setAddress(addAddressToEmployee());
 
@@ -130,7 +134,7 @@ public class EmployeeController {
     private void cycleChoiceNameTable(Employee employee) throws SQLException {
         String n = "N";
         System.out.println("To continue working with the Employee, enter Y or N");
-        String str = inputYesOrNot();
+        String str = InputValue.inputYesOrNot();
         if (!n.equals(str)) {
             selectNameTable(employee);
             cycleChoiceNameTable(employee);
@@ -166,12 +170,12 @@ public class EmployeeController {
     private Boolean isDataOfDismmissal() {
         String switcher = "Y";
         System.out.println("Enter Y if the employee is fired or N if not fired");
-        return inputYesOrNot().equals(switcher);
+        return InputValue.inputYesOrNot().equals(switcher);
     }
 
     private LocalDate validEmploymentDate(LocalDate localDate) {
         System.out.println("Enter employmentDate");
-        LocalDate employmentDate = inputDate();
+        LocalDate employmentDate = InputValue.inputDate();
         if (!employmentDate.isAfter(localDate)) {
             System.out.println("The date of employment cannot be less than the date of birth + 16 years");
             return validEmploymentDate(localDate);
@@ -183,7 +187,7 @@ public class EmployeeController {
 
     private LocalDate validDataOfDismissal(LocalDate localDate) {
         System.out.println("Enter Data of dismissal");
-        LocalDate dataOfDismissal = inputDate();
+        LocalDate dataOfDismissal = InputValue.inputDate();
         if (dataOfDismissal.isBefore(localDate)) {
             System.out.println("The date of dismissal cannot be less than the date of employment");
             return validDataOfDismissal(localDate);
@@ -195,7 +199,7 @@ public class EmployeeController {
 
     private LocalDate validBirthday() {
         System.out.println("Enter Birthday");
-        LocalDate birthday = inputDate();
+        LocalDate birthday = InputValue.inputDate();
         LocalDate date1 = birthday.plusYears(16);
 
         LocalDate dateNow = LocalDate.now();
@@ -203,7 +207,7 @@ public class EmployeeController {
             System.out.println("Less than legal age for employment.");
             System.out.println("If this is an input error, try entering data again");
             System.out.println("Enter Y or N");
-            String yn = inputYesOrNot();
+            String yn = InputValue.inputYesOrNot();
             if (yn.equals("N")) {
                 System.exit(0);
                 return null;

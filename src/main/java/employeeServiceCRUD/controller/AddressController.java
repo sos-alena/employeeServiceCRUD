@@ -1,34 +1,43 @@
-package entityController;
+package employeeServiceCRUD.controller;
 
-import entity.Address;
-import entity.Employee;
-import listEntity.AddressItem;
-import service.AddressService;
-import service.EmployeeService;
+import employeeServiceCRUD.controller.validator.CountryValidator;
+import employeeServiceCRUD.controller.validator.InputValue;
+import employeeServiceCRUD.models.Address;
+import employeeServiceCRUD.models.Employee;
+import employeeServiceCRUD.controller.enums.AddressColumns;
+import employeeServiceCRUD.service.AddressService;
+import employeeServiceCRUD.service.EmployeeService;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import static validator.InputValue.*;
-import static validator.validationCountry.getNameCountry;
-
 public class AddressController {
 
-    AddressService addressService = new AddressService();
+    AddressService addressService;
+    EmployeeService employeeService;
+
+    public AddressController(AddressService addressService, EmployeeService employeeService) {
+        this.addressService = addressService;
+        this.employeeService = employeeService;
+    }
+
+    public AddressController(AddressService addressService) {
+        this.addressService = addressService;
+    }
 
     public Address inputAddress() throws SQLException {
         Address address = new Address();
         System.out.println("Enter country");
-        String country = getNameCountry();
+        String country = CountryValidator.getNameCountry();
         address.setCountry(country);
         System.out.println("Enter town");
-        String town = inputValidateStr();
+        String town = InputValue.inputValidateStr();
         address.setTown(town);
         System.out.println("street");
-        String street = inputValidateStr();
+        String street = InputValue.inputValidateStr();
         address.setStreet(street);
         System.out.println("postCode");
-        String postCode = inputPostCodeValue();
+        String postCode = InputValue.inputPostCodeValue();
         address.setPostCode(postCode);
 
         addressService.add(address);
@@ -38,7 +47,7 @@ public class AddressController {
 
     public void deleteAddress() throws SQLException {
         System.out.println("Input number ID: ");
-        Long id = inputValidateLong();
+        Long id = InputValue.inputValidateLong();
         Address address = searchId(id);
         if (address == null) {
             System.out.println("Address with this ID does not exist.");
@@ -58,7 +67,7 @@ public class AddressController {
 
     public void editeAddress() throws SQLException {
         System.out.println("Input number ID: ");
-        Long id = inputValidateLong();
+        Long id = InputValue.inputValidateLong();
        Address address = searchId(id);
         if (address == null) {
             System.out.println("Address with this ID does not exist.");
@@ -74,19 +83,19 @@ public class AddressController {
     }
 
     private void selectNameTable(Address address) {
-        AddressItem name = inputAddressItem();
+        AddressColumns name = InputValue.inputAddressItem();
         switch (name) {
-            case COUNTRY -> address.setCountry(getNameCountry());
-            case TOWN -> address.setTown(inputValidateStr());
-            case STREET -> address.setStreet(inputValidateStr());
-            case POST_CODE -> address.setPostCode(inputPostCodeValue());
+            case COUNTRY -> address.setCountry(CountryValidator.getNameCountry());
+            case TOWN -> address.setTown(InputValue.inputValidateStr());
+            case STREET -> address.setStreet(InputValue.inputValidateStr());
+            case POST_CODE -> address.setPostCode(InputValue.inputPostCodeValue());
         }
     }
 
     private void cycleChoiceNameTable(Address address) {
         String n = "N";
         System.out.println("To continue working with the Address, enter Y or N");
-        String str = inputYesOrNot();
+        String str = InputValue.inputYesOrNot();
         if (!n.equals(str)) {
             selectNameTable(address);
             cycleChoiceNameTable(address);
@@ -96,7 +105,6 @@ public class AddressController {
     }
 
     private int checkIdAddressInEmployee(Long id){
-        EmployeeService employeeService = new EmployeeService();
         List<Employee> employees = null;
         try {
             employees = employeeService.getAll();

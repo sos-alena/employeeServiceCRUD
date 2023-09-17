@@ -1,6 +1,6 @@
-package listEntity;
+package employeeServiceCRUD.controller.enums;
 
-public enum EmployeeItem {
+public enum EmployeeColumns {
 
     BIRTHDAY,
     DATA_OF_DISMISSAL,

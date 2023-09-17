@@ -1,4 +1,4 @@
-package entity;
+package employeeServiceCRUD.models;
 
 import lombok.*;
 

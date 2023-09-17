@@ -1,13 +1,11 @@
-package validator;
+package employeeServiceCRUD.controller.validator;
 
 import java.util.Locale;
 
-import static validator.InputValue.inputValidateStr;
-
-public class validationCountry {
+public class CountryValidator {
 
     public static String getNameCountry() {
-        String name = inputValidateStr();
+        String name = InputValue.inputValidateStr();
 
         String[] locales = Locale.getISOCountries();
 

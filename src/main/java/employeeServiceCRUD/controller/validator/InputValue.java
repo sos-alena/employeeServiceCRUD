@@ -1,9 +1,9 @@
-package validator;
+package employeeServiceCRUD.controller.validator;
 
-import listEntity.Action;
-import listEntity.AddressItem;
-import listEntity.EmployeeItem;
-import listEntity.ListEntity;
+import employeeServiceCRUD.controller.enums.Actions;
+import employeeServiceCRUD.controller.enums.AddressColumns;
+import employeeServiceCRUD.controller.enums.EmployeeColumns;
+import employeeServiceCRUD.controller.enums.ModelsList;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
@@ -13,10 +13,10 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static listEntity.Action.*;
-import static listEntity.AddressItem.*;
-import static listEntity.EmployeeItem.*;
-import static listEntity.ListEntity.*;
+import static employeeServiceCRUD.controller.enums.Actions.*;
+import static employeeServiceCRUD.controller.enums.AddressColumns.*;
+import static employeeServiceCRUD.controller.enums.EmployeeColumns.*;
+import static employeeServiceCRUD.controller.enums.ModelsList.*;
 
 @Slf4j
 public class InputValue {
@@ -93,13 +93,13 @@ public class InputValue {
             }
         }
 
-    public static ListEntity inputEntity() {
+    public static ModelsList inputEntity() {
         try {
             System.out.println("Input the item from the list: "
                     + ADDRESS + ", "
                     + EMPLOYEE + ", "
                     + DEPARTMENT );
-            ListEntity item = ListEntity.valueOf(READER.readLine());
+            ModelsList item = ModelsList.valueOf(READER.readLine());
             System.out.println("Item is valid");
             return item;
         } catch (Exception exception) {
@@ -109,14 +109,14 @@ public class InputValue {
         }
     }
 
-        public static Action inputAction () {
+        public static Actions inputAction () {
             try {
                 System.out.println("Input the item from the list: "
                         + PRINT + ", "
                         + REMOVE + ", "
                         + INSERT + ", " +
                         UPDATE + ", ");
-                Action item = Action.valueOf(READER.readLine());
+                Actions item = Actions.valueOf(READER.readLine());
                 System.out.println("Item is valid");
                 return item;
             } catch (Exception exception) {
@@ -127,14 +127,14 @@ public class InputValue {
         }
 
 
-        public static AddressItem inputAddressItem () {
+        public static AddressColumns inputAddressItem () {
             try {
                 System.out.println("Input the item from the list: "
                         + COUNTRY + ", "
                         + TOWN + ", "
                         + STREET + ", " +
                         POST_CODE + ", ");
-                AddressItem item = AddressItem.valueOf(READER.readLine());
+                AddressColumns item = AddressColumns.valueOf(READER.readLine());
                 System.out.println("Item is valid");
                 return item;
             } catch (Exception exception) {
@@ -144,7 +144,7 @@ public class InputValue {
             }
         }
 
-    public static EmployeeItem inputEmployeeItem() {
+    public static EmployeeColumns inputEmployeeItem() {
         try {
             System.out.println("Input the item from the list: "
                     + BIRTHDAY + ", "
@@ -157,7 +157,7 @@ public class InputValue {
             + PHONE_NUMBER + ", "
             + ADDRESS_ID + ", "
             + DEPARTMENT_ID);
-            EmployeeItem item =EmployeeItem.valueOf(READER.readLine());
+            EmployeeColumns item = EmployeeColumns.valueOf(READER.readLine());
             System.out.println("Item is valid");
             return item;
         } catch (Exception exception) {

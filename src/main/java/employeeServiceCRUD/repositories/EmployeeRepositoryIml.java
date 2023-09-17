@@ -1,25 +1,21 @@
-package service;
+package employeeServiceCRUD.repositories;
 
-import bl.SessionUtil;
-import dao.DepartmentDAO;
-import entity.Address;
-import entity.Department;
-import entity.Employee;
+import employeeServiceCRUD.repositories.bl.SessionWrapper;
+import employeeServiceCRUD.models.Employee;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class DepartmentService extends SessionUtil implements DepartmentDAO {
-
+public class EmployeeRepositoryIml extends SessionWrapper implements EmployeeRepository{
     @Override
-    public void add(Department department) throws SQLException {
+    public void add(Employee employee) throws SQLException {
         //open session with a transaction
         openTransactionSession();
 
         Session session = getSession();
-        session.save(department);
+        session.save(employee);
 
         //close session with a transaction
         closeTransactionSession();
@@ -27,60 +23,60 @@ public class DepartmentService extends SessionUtil implements DepartmentDAO {
     }
 
     @Override
-    public List<Department> getAll() throws SQLException {
+    public List<Employee> getAll() throws SQLException {
         //open session with a transaction
         openTransactionSession();
 
-        String sql = "SELECT * FROM DEPARTMENT";
+        String sql = "SELECT * FROM EMPLOYEE";
 
         Session session = getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Department.class);
-        List<Department> departmentList = query.list();
+        Query query = session.createNativeQuery(sql).addEntity(Employee.class);
+        List<Employee> employeeList = query.list();
 
         //close session with a transaction
         closeTransactionSession();
 
-        return departmentList;
+        return employeeList;
     }
 
     @Override
-    public Department getById(Long id) throws SQLException {
+    public Employee getById(Long id) throws SQLException {
         //open session with a transaction
         openTransactionSession();
 
-        String sql = "SELECT * FROM DEPARTMENT WHERE ID = :id";
+        String sql = "SELECT * FROM EMPLOYEE WHERE ID = :id";
 
         Session session = getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Department.class);
+        Query query = session.createNativeQuery(sql).addEntity(Employee.class);
         query.setParameter("id", id);
 
-        Department department = (Department) query.getSingleResult();
+        Employee employee = (Employee) query.getSingleResult();
 
         //close session with a transaction
         closeTransactionSession();
 
-        return department;
+        return employee;
     }
 
     @Override
-    public void update(Department department) throws SQLException {
+    public void update(Employee employee) throws SQLException {
 //open session with a transaction
         openTransactionSession();
 
         Session session = getSession();
-        session.update(department);
+        session.update(employee);
 
         //close session with a transaction
         closeTransactionSession();
     }
 
     @Override
-    public void remove(Department department) throws SQLException {
+    public void remove(Employee employee) throws SQLException {
 //open session with a transaction
         openTransactionSession();
 
         Session session = getSession();
-        session.remove(department);
+        session.remove(employee);
 
         //close session with a transaction
         closeTransactionSession();

@@ -1,19 +1,17 @@
-package service;
+package employeeServiceCRUD.repositories;
 
-import bl.SessionUtil;
-
-import dao.AddressDAO;
-import entity.Address;
+import employeeServiceCRUD.models.Address;
+import employeeServiceCRUD.repositories.bl.SessionWrapper;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class AddressService extends SessionUtil implements AddressDAO {
+public class AddressRepositoryIml extends SessionWrapper implements AddressRepository{
 
     @Override
-    public void add(Address e) throws SQLException {
+    public void add(Address e){
         //open session with a transaction
         openTransactionSession();
 
@@ -86,4 +84,3 @@ public class AddressService extends SessionUtil implements AddressDAO {
     }
 
 }
-

@@ -1,29 +1,28 @@
-package entityController;
+package employeeServiceCRUD.controller;
 
-import entity.Address;
-import entity.Department;
-import entity.Employee;
-import listEntity.AddressItem;
-import service.AddressService;
-import service.DepartmentService;
-import service.EmployeeService;
+import employeeServiceCRUD.controller.validator.InputValue;
+import employeeServiceCRUD.models.Department;
+import employeeServiceCRUD.models.Employee;
+import employeeServiceCRUD.service.DepartmentService;
+import employeeServiceCRUD.service.EmployeeService;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
-
-import static validator.InputValue.*;
-import static validator.InputValue.inputYesOrNot;
-import static validator.validationCountry.getNameCountry;
 
 public class DepartmentController {
 
-    DepartmentService departmentService = new DepartmentService();
+    DepartmentService departmentService;
+    EmployeeService employeeService;
+
+    public DepartmentController(DepartmentService departmentService, EmployeeService employeeService) {
+        this.departmentService = departmentService;
+        this.employeeService = employeeService;
+    }
 
     public Department inputDepartment() throws SQLException {
         Department department = new Department();
         System.out.println("Enter name of Department");
-        String title = inputValidateStr();
+        String title = InputValue.inputValidateStr();
         department.setTitle(title);
         departmentService.add(department);
 
@@ -32,7 +31,7 @@ public class DepartmentController {
 
     public void deleteDepartment() throws SQLException {
         System.out.println("Input number ID: ");
-        Long id = inputValidateLong();
+        Long id = InputValue.inputValidateLong();
         Department department = searchId(id);
         if (department == null) {
             System.out.println("Depatment with this ID does not exist.");
@@ -52,12 +51,12 @@ public class DepartmentController {
 
     public void editeDepartment() throws SQLException {
         System.out.println("Input number ID: ");
-        Long id = inputValidateLong();
+        Long id = InputValue.inputValidateLong();
         if (!(searchId(id) == null)) {
             Department department = departmentService.getById(id);
             System.out.println(department);
             System.out.println("Enter department title for update: ");
-            String title = inputValidateStr ();
+            String title = InputValue.inputValidateStr ();
             if(!(searchTitle(title) == null)){
                 department.setTitle(title);
                 departmentService.update(department);
@@ -69,8 +68,7 @@ public class DepartmentController {
         }
     }
     private int checkIdDepartmentInEmployee(Long id){
-        EmployeeService employeeService = new EmployeeService();
-        List<Employee> employees = null;
+      List<Employee> employees = null;
         try {
             employees = employeeService.getAll();
         } catch (SQLException e) {

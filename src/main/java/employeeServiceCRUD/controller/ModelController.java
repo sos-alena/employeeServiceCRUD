@@ -1,28 +1,28 @@
-package entityController;
+package employeeServiceCRUD.controller;
 
-import entity.Address;
-import listEntity.Action;
-import listEntity.AddressItem;
-import listEntity.ListEntity;
+import employeeServiceCRUD.controller.enums.Actions;
+import employeeServiceCRUD.controller.enums.ModelsList;
+import employeeServiceCRUD.controller.validator.InputValue;
 
 import java.sql.SQLException;
 
-import static bl.HibernateUtil.shutdown;
-import static listEntity.Action.*;
-import static validator.InputValue.*;
-import static validator.InputValue.inputYesOrNot;
-import static validator.validationCountry.getNameCountry;
+import static employeeServiceCRUD.repositories.bl.HibernateUtil.shutdown;
 
-public class EntityController {
-    AddressController addressController = new AddressController();
-    DepartmentController departmentController = new DepartmentController();
-    EmployeeController employeeController = new EmployeeController();
+public class ModelController {
+    AddressController addressController;
+    DepartmentController departmentController;
+    EmployeeController employeeController;
 
+    public ModelController(AddressController addressController, DepartmentController departmentController, EmployeeController employeeController) {
+        this.addressController = addressController;
+        this.departmentController = departmentController;
+        this.employeeController = employeeController;
+    }
 
-     public void app() throws SQLException {
+    public void app() throws SQLException {
          String n = "N";
          System.out.println("To continue working with the APP, enter Y or N");
-         String str = inputYesOrNot();
+         String str = InputValue.inputYesOrNot();
          if (!n.equals(str)) {
              selectEntity();
              app();
@@ -34,7 +34,7 @@ public class EntityController {
 
 
    private void selectEntity() throws SQLException {
-        ListEntity name = inputEntity();
+        ModelsList name = InputValue.inputEntity();
         switch (name) {
             case ADDRESS -> cycleChoiceActionAddress();
             case EMPLOYEE -> cycleChoiceActionEmployee();
@@ -43,7 +43,7 @@ public class EntityController {
     }
 
     private void selectActionAddress() throws SQLException {
-        Action name = inputAction();
+        Actions name = InputValue.inputAction();
         switch (name) {
             case PRINT -> addressController.selectAllAddress();
             case REMOVE -> addressController.deleteAddress();
@@ -55,7 +55,7 @@ public class EntityController {
     private void cycleChoiceActionAddress() throws SQLException {
         String n = "N";
         System.out.println("To continue working with the Address, enter Y or N");
-        String str = inputYesOrNot();
+        String str = InputValue.inputYesOrNot();
         if (!n.equals(str)) {
             selectActionAddress();
             cycleChoiceActionAddress();
@@ -65,7 +65,7 @@ public class EntityController {
     }
 
     private void selectActionDepartment() throws SQLException {
-        Action name = inputAction();
+        Actions name = InputValue.inputAction();
         switch (name) {
             case PRINT -> departmentController.selectAllDepartment();
             case REMOVE -> departmentController.deleteDepartment();
@@ -77,7 +77,7 @@ public class EntityController {
     private void cycleChoiceActionDepartment() throws SQLException {
         String n = "N";
         System.out.println("To continue working with the Department, enter Y or N");
-        String str = inputYesOrNot();
+        String str = InputValue.inputYesOrNot();
         if (!n.equals(str)) {
             selectActionDepartment();
             cycleChoiceActionDepartment();
@@ -87,7 +87,7 @@ public class EntityController {
     }
 
     private void selectActionEmployee() throws SQLException {
-        Action name = inputAction();
+        Actions name = InputValue.inputAction();
         switch (name) {
             case PRINT -> employeeController.selectAllEmployee();
             case REMOVE -> employeeController.deleteEmployee();
@@ -99,7 +99,7 @@ public class EntityController {
     private void cycleChoiceActionEmployee() throws SQLException {
         String n = "N";
         System.out.println("To continue working with the Employee, enter Y or N");
-        String str = inputYesOrNot();
+        String str = InputValue.inputYesOrNot();
         if (!n.equals(str)) {
             selectActionEmployee();
             cycleChoiceActionEmployee();
