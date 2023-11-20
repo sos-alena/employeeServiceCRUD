@@ -4,16 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ddb21fd-58e5-463d-b8ee-f3ab68704375" name="Changes" comment="Add projet">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Domain.java" afterDir="false" />
+    <list default="true" id="5ddb21fd-58e5-463d-b8ee-f3ab68704375" name="Changes" comment="Change of project design">
+      <change afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/enums/Models.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EmplyeeServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/DepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/ModelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/ModelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/enums/Actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/enums/Actions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/enums/AddressColumns.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/enums/AddressColumns.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/enums/EmployeeColumns.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/enums/EmployeeColumns.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/enums/ModelsList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/validator/CountryValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/validator/CountryValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/controller/validator/InputValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/controller/validator/InputValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/models/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/models/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/models/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/models/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/models/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/models/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/repositories/AddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/repositories/AddressRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/repositories/AddressRepositoryIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/repositories/AddressRepositoryIml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/repositories/DepartmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/repositories/DepartmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/repositories/DepartmentRepositoryIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/repositories/DepartmentRepositoryIml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/repositories/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/repositories/EmployeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/repositories/EmployeeRepositoryIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/repositories/EmployeeRepositoryIml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/repositories/bl/HibernateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/repositories/bl/HibernateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/repositories/bl/SessionWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/repositories/bl/SessionWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/service/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/service/DepartmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeServiceCRUD/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/service/crud/service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +43,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -46,16 +71,19 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master.branch2&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/IdeaProjects/employeeServiceCRUD&quot;,
     &quot;mysql-explain.agentPath&quot;: &quot;C:\\Users\\User\\AppData\\Roaming\\JetBrains\\IntelliJIdea2023.2\\plugins\\mysql-explain-intellij-plugin\\lib\\mysql-explain-agent-1.0-jar-with-dependencies.jar&quot;,
     &quot;mysql-explain.existMysqlJar&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.21875&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.25227964&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
@@ -67,6 +95,74 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.EmplyeeServiceApplication">
+    <configuration name="Domain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="domain.Domain" />
+      <module name="employeeServiceCRUD" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DomainAdd" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="domain.DomainAdd" />
+      <module name="employeeServiceCRUD" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmplyeeServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="EmplyeeServiceApplication" />
+      <module name="employeeServiceCRUD" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ListCountry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="entityController.ListCountry" />
+      <module name="employeeServiceCRUD" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.DomainAdd" />
+      <item itemvalue="Application.EmplyeeServiceApplication" />
+      <item itemvalue="Application.ListCountry" />
+      <item itemvalue="Application.Domain" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EmplyeeServiceApplication" />
+        <item itemvalue="Application.Domain" />
+        <item itemvalue="Application.ListCountry" />
+        <item itemvalue="Application.Domain" />
+        <item itemvalue="Application.Domain" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -95,7 +191,26 @@
       <workItem from="1692533265024" duration="9204000" />
       <workItem from="1692543629190" duration="2386000" />
       <workItem from="1692546040176" duration="11883000" />
-      <workItem from="1692646236178" duration="2317000" />
+      <workItem from="1692646236178" duration="5642000" />
+      <workItem from="1692653043614" duration="3738000" />
+      <workItem from="1692732949890" duration="5168000" />
+      <workItem from="1692782044833" duration="6045000" />
+      <workItem from="1692911721522" duration="14143000" />
+      <workItem from="1693058813413" duration="31863000" />
+      <workItem from="1693129225633" duration="25417000" />
+      <workItem from="1693158662999" duration="340000" />
+      <workItem from="1693342190328" duration="1324000" />
+      <workItem from="1694372951798" duration="56000" />
+      <workItem from="1694969597176" duration="10175000" />
+      <workItem from="1694982848876" duration="5828000" />
+      <workItem from="1695066247744" duration="655000" />
+      <workItem from="1695755998279" duration="4737000" />
+      <workItem from="1695815821433" duration="4770000" />
+      <workItem from="1698492544002" duration="36000" />
+      <workItem from="1698492613850" duration="757000" />
+      <workItem from="1698495273263" duration="18000" />
+      <workItem from="1698495327246" duration="86000" />
+      <workItem from="1699693220528" duration="2449000" />
     </task>
     <task id="LOCAL-00001" summary="Add projet">
       <option name="closed" value="true" />
@@ -113,7 +228,119 @@
       <option name="project" value="LOCAL" />
       <updated>1692648577049</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add projet">
+      <option name="closed" value="true" />
+      <created>1692649050701</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692649050701</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add projet">
+      <option name="closed" value="true" />
+      <created>1692649169129</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692649169129</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add projet">
+      <option name="closed" value="true" />
+      <created>1692914632790</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692914632790</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add funcction">
+      <option name="closed" value="true" />
+      <created>1693078482673</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1693078482673</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add funcction2">
+      <option name="closed" value="true" />
+      <created>1693079461755</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1693079461755</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add funcction2">
+      <option name="closed" value="true" />
+      <created>1693079725919</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693079725919</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add funcction2">
+      <option name="closed" value="true" />
+      <created>1693081563758</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1693081563758</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add funcction2">
+      <option name="closed" value="true" />
+      <created>1693096841615</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1693096841615</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add funcction2">
+      <option name="closed" value="true" />
+      <created>1693149010436</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1693149010436</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add funcction2">
+      <option name="closed" value="true" />
+      <created>1693155262349</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1693155262349</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add funcction2">
+      <option name="closed" value="true" />
+      <created>1693155275872</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1693155275872</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add funcction2">
+      <option name="closed" value="true" />
+      <created>1693157192103</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1693157192103</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add funcction2">
+      <option name="closed" value="true" />
+      <created>1693158351720</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1693158351720</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Change of project design">
+      <option name="closed" value="true" />
+      <created>1694979532734</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1694979532734</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,7 +348,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add projet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add projet" />
+    <MESSAGE value="Add funcction" />
+    <MESSAGE value="Add funcction2" />
+    <MESSAGE value="Change of project design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change of project design" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

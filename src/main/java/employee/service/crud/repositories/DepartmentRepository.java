@@ -1,11 +1,11 @@
-package dao;
+package employee.service.crud.repositories;
 
-import entity.Department;
+import employee.service.crud.models.Department;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface DepartmentDAO {
+public interface DepartmentRepository {
     void add(Department department) throws SQLException;
 
     List<Department> getAll() throws SQLException;

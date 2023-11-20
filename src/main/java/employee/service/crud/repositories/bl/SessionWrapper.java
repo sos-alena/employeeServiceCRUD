@@ -1,10 +1,10 @@
-package bl;
+package employee.service.crud.repositories.bl;
 
 import lombok.Data;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 @Data
-public class SessionUtil {
+public class SessionWrapper {
     private Session session;
     private Transaction transaction;
 

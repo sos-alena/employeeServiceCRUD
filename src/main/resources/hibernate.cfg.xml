@@ -15,8 +15,8 @@
     <property name = "hibernate.current_session_context_class">thread</property>
     <property name = "hibernate.hbm2ddl.auto">update</property>
 
-    <mapping class="entity.Address"/>
-    <mapping class="entity.Employee"/>
-    <mapping class="entity.Department"/>
+   <mapping class="employee.service.crud.models.Address"/>
+   <mapping class="employee.service.crud.models.Employee"/>
+   <mapping class="employee.service.crud.models.Department"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,4 +1,4 @@
-package bl;
+package employee.service.crud.repositories.bl;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,7 +14,6 @@ public class HibernateUtil {
             throw new ExceptionInInitializerError();
         }
     }
-
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }

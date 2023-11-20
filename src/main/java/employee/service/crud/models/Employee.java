@@ -1,4 +1,4 @@
-package entity;
+package employee.service.crud.models;
 
 import lombok.*;
 
@@ -6,14 +6,13 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "EMPLOYEE")
-public class Employee{
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,9 +44,13 @@ public class Employee{
     @Column(name = "DATA_OF_DISMISSAL")
     private LocalDate data_of_dismissal;
 
-@ManyToOne(cascade = CascadeType.ALL)
-@JoinColumn(name = "department_id")
+    @Column(name = "INN")
+    private String inn;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "department_id")
     private Department department;
+
 
     @Override
     public boolean equals(Object object) {
@@ -58,7 +61,7 @@ public class Employee{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, birthday, phone_number, address, position, employment_data, data_of_dismissal, department);
+        return Objects.hash(id, firstName, lastName, birthday, phone_number, address, position, employment_data, data_of_dismissal, inn, department);
     }
 
     @Override
@@ -73,6 +76,7 @@ public class Employee{
                 ", position='" + position + '\'' +
                 ", employment_data=" + employment_data +
                 ", data_of_dismissal=" + data_of_dismissal +
+                ", inn='" + inn + '\'' +
                 ", department=" + department +
                 '}';
     }

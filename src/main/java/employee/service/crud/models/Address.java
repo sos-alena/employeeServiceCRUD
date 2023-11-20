@@ -1,6 +1,9 @@
-package entity;
+package employee.service.crud.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -11,7 +14,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "ADDRESS")
-public class Address{
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,15 +30,15 @@ public class Address{
     private String postCode;
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (!(object instanceof Address address)) return false;
-        return Objects.equals(id, address.id) && Objects.equals(town, address.town) && Objects.equals(street, address.street) && Objects.equals(country, address.country) && Objects.equals(postCode, address.postCode);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Address address)) return false;
+        return Objects.equals(getId(), address.getId()) && Objects.equals(getTown(), address.getTown()) && Objects.equals(getStreet(), address.getStreet()) && Objects.equals(getCountry(), address.getCountry()) && Objects.equals(getPostCode(), address.getPostCode());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, town, street, country, postCode);
+        return Objects.hash(getId(), getTown(), getStreet(), getCountry(), getPostCode());
     }
 
     @Override
